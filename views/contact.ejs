@@ -1,7 +1,54 @@
 <%- include("partials/header"); -%>
+<script>
+      function changeColor(){
+        var input = document.querySelectorAll(".form-control");
+        let flag = true;
+        input.forEach(function(x){
+          if(x.value.length < 1) flag = false;
+        });
+        if(flag){
+            var elem = document.getElementById("send-btn");
+            let e = document.getElementById("no-data");
+            e.removeAttribute("hidden");
+            e.innerHTML = "Message sent successfully" ;
+            elem.classList.replace("btn-primary","btn-success");
+        }
+        else{
+          var e = document.getElementById("no-data");
+          e.toggleAttribute("hidden");
+        }
 
-<p>
-  <%= contactContent %>
-</p>
+      }
+    </script>
+<div style="margin: 20px auto;" class="form">
+
+      <form  method="post" name="EmailForm">
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="fname" class="form-label">First Name</label>
+            <input class="form-control" type="text" name="fname" required>
+          </div>
+          <div class="form-group">
+            <label for="lname" class="form-label">Last Name</label>
+            <input class="form-control" type="text" name="lname" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="mail" class="form-label">Your email</label>
+          <input class="form-control" type="email" name="mail" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="msg" class="form-label">Write your message here...</label>
+          <textarea class="form-control" name="msg" rows="8" cols="80" required></textarea>
+        </div>
+        <button onclick="changeColor()" class="btn btn-primary" id = "send-btn" type="button" name="send"><i class="fas fa-paper-plane"></i> Send</button>
+
+        <p hidden id="no-data">Please fill out your details!!</p>
+      </form>
+
+
+    </div>
 
 <%- include("partials/footer"); -%>
