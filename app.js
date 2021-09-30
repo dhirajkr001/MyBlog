@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -13,7 +13,7 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 
 //MongoDB Atlas connection
-mongoose.connect("mongodb+srv://admin-dhiraj:admin321@cluster0.shdma.mongodb.net/MyBlog");
+mongoose.connect("mongodb+srv://" + process.env.MONGODB_USER + ":" + process.env.MONGODB_PASSWORD +"@cluster0.shdma.mongodb.net/MyBlog");
 
 // Defining document Schema
 const blogSchema = {
